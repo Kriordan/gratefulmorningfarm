@@ -76,6 +76,19 @@ THIRD_PARTY_APPS = [
     "model_utils",
     "allauth",
     "allauth.account",
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail",
+    "modelcluster",
+    "taggit",
 ]
 LOCAL_APPS = [
     "gratefulmorningfarm.home",
@@ -143,6 +156,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "gratefulmorningfarm.util.middleware.HTMXMessageMiddleware",
 ]
 
@@ -257,6 +271,8 @@ ADMIN_URL = "admin/"
 ADMINS = [("""Keith Riordan""", "keith.riordan@gmail.com")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
+# Wagtail display name for admin backend dashboard
+WAGTAIL_SITE_NAME = "My Example Site"
 
 
 # LOGGING
@@ -301,7 +317,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_ADAPTER = 'gratefulmorningfarm.user.adapter.HTMXAccountAdapter'
+ACCOUNT_ADAPTER = "gratefulmorningfarm.user.adapter.HTMXAccountAdapter"
 
 # https://django-allauth.readthedocs.io/en/latest/forms.html#account-forms
 ACCOUNT_FORMS = {
