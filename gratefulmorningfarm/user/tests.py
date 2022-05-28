@@ -77,12 +77,12 @@ class RegistrationLiveTest(PlaywrightTestCase):
         super().setUp()
         self.password = "yeahmanitsarealpass"  # noqa: S105
         self.form_data = self.login_form_data = {
-            "email": "ben@coolguy.com",
-            "email2": "ben@coolguy.com",
+            "email": "shaun@coolguy.com",
+            "email2": "shaun@coolguy.com",
             "password1": self.password,
             "password2": self.password,
-            "first_name": "ben",
-            "last_name": "beecher",
+            "first_name": "shaun",
+            "last_name": "riordan",
         }
         self.url = reverse("user:account_welcome")
 
@@ -176,12 +176,12 @@ class RegistrationTest(TestCase):
     def setUp(self):
         self.password = "yeahmanitsarealpass"  # noqa: S105
         self.form_data = self.login_form_data = {
-            "email": "ben@coolguy.com",
-            "email2": "ben@coolguy.com",
+            "email": "shaun@coolguy.com",
+            "email2": "shaun@coolguy.com",
             "password1": self.password,
             "password2": self.password,
-            "first_name": "ben",
-            "last_name": "beecher",
+            "first_name": "shaun",
+            "last_name": "riordan",
         }
         self.url = reverse("account_signup")
 
@@ -241,7 +241,7 @@ class RegistrationTest(TestCase):
 class UserAdminTest(TestCase):
     def setUp(self):
         form_data = self.login_form_data = {
-            "username": "ben@coolguy.com",
+            "username": "shaun@coolguy.com",
             "password": "yeahman",
         }
         self.user = baker.make_recipe(
@@ -301,7 +301,7 @@ class UserAdminTest(TestCase):
     def test_user_admin_change(self):
         url = reverse("admin:user_user_change", args=[self.user.id])
         form_data = {
-            "email": "ben@coolguy.com",
+            "email": "shaun@coolguy.com",
             "last_login_0": "2015-05-20",
             "last_login_1": "03:38:28",
         }
