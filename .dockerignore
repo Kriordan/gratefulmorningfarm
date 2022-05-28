@@ -1,0 +1,8 @@
+*.pyc
+*.pyo
+/.env
+/.venv/
+/node_modules
+/gratefulmorningfarm/static
+.DS_Store
+.editorconfig

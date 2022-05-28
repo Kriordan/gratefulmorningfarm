@@ -1,0 +1,95 @@
+repos:
+## system
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v2.30.0
+    hooks:
+    -   id: pyupgrade
+        args: [--py310-plus]
+-   repo: https://github.com/adamchainz/django-upgrade
+    rev: 1.4.0
+    hooks:
+    -   id: django-upgrade
+        args: [--target-version, "4.0"]
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    -   id: check-yaml
+#    -   id: end-of-file-fixer
+#    -   id: trailing-whitespace
+    -   id: debug-statements
+    -   id: mixed-line-ending
+-   repo: https://github.com/pycqa/doc8
+    rev: 0.10.1
+    hooks:
+    -   id: doc8
+# TODO:  https://github.com/adamchainz/pre-commit-oxipng
+
+#python
+
+-   repo: local
+    hooks:
+    -   id: flakeheaven
+        name: flakeheaven
+        entry: poetry run flakeheaven lint --config=pyproject.toml
+        types: [python]
+        language: system
+
+- repo: local
+  hooks:
+    - id: pylint
+      name: pylint
+      entry: poetry run pylint
+      language: system
+      types: [python]
+      args:
+        [
+          "-rn", # Only display messages
+          "--output-format=colorized",
+          "-sn", # Don't display the score
+          "--load-plugins=pylint_django", # Load an extension
+          "--django-settings-module=gratefulmorningfarm.config.settings.local",
+        ]
+
+-   repo: local
+    hooks:
+    -   id: isort
+        name: isort
+        language: system
+        entry: poetry run isort
+        types: [python]
+
+-   repo: local
+    hooks:
+    -   id: black
+        name: black
+        entry: poetry run black
+        types: [python]
+        language: system
+
+-   repo: local
+    hooks:
+    -   id: djlint
+        name: djlint
+        entry: poetry run djlint --reformat
+        language: system
+        types_or: [html]
+
+
+## frontend
+-   repo: local
+    hooks:
+    -   id: eslint
+        name: eslint
+        entry: npx eslint --fix
+        files: ^frontend/
+        language: system
+        types_or: [javascript, ts]
+-   repo: local
+    hooks:
+    -   id: stylelint
+        name: stylelint
+        entry: npx stylelint --fix --allow-empty-input
+        files: ^frontend/
+        language: system
+        exclude: frontent/fontawesome/.*
+        types_or: [css, scss]

@@ -1,0 +1,24 @@
+/* sticky footer */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#main {
+  flex: 1;
+  margin-left: calc(100vw - 100%); /* prevent jump with scroll bar */
+}
+
+#loading-body {
+  position: fixed;
+  top: 50%;
+  z-index: 40;
+}
+
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+[x-cloak] { display: none !important; }

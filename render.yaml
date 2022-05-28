@@ -1,0 +1,109 @@
+previewsEnabled: true
+previewsExpireAfterDays: 5
+services:
+    - type: web
+      name: gratefulmorningfarm
+      env: python
+      previewPlan: starter
+      healthCheckPath: /
+      buildCommand: "./build.sh"
+      startCommand: poetry run gunicorn --worker-tmp-dir /dev/shm  -w 4 -k uvicorn.workers.UvicornWorker --log-file=- gratefulmorningfarm.config.asgi:application --preload
+      envVars:
+        - key: PYTHON_VERSION
+          value: 3.10.1
+        - fromGroup: sentry
+        - key: DJANGO_SECRET_KEY
+          generateValue: true
+        - key: DJANGO_SETTINGS_MODULE
+          value: "gratefulmorningfarm.config.settings.prod"
+        - key: DJANGO_ALLOWED_HOSTS
+          fromService:
+            type: web
+            envVarKey: RENDER_EXTERNAL_HOSTNAME
+            name: gratefulmorningfarm
+        - key: DJANGO_DEBUG
+          value: false
+        - key: DATABASE_URL
+          fromDatabase:
+            name: gratefulmorningfarm-db
+            property: connectionString
+        - key: SENTRY_ENVIRONMENT
+          fromService:
+            type: web
+            envVarKey: RENDER_SERVICE_NAME
+            name: gratefulmorningfarm
+        - key: SENTRY_RELEASE
+          fromService:
+            type: web
+            envVarKey: RENDER_GIT_COMMIT
+            name: gratefulmorningfarm
+        - key: DJANGO_AWS_STORAGE_BUCKET_NAME
+          value: gratefulmorningfarm
+        - key: DJANGO_AWS_ACCESS_KEY_ID
+          fromService:
+            type: web
+            envVarKey: MINIO_ROOT_USER
+            name: minio
+        - key: DJANGO_AWS_SECRET_ACCESS_KEY
+          fromService:
+            type: web
+            envVarKey: MINIO_ROOT_PASSWORD
+            name: minio
+        - key: DJANGO_AWS_S3_ENDPOINT_URL
+          fromService:
+            type: web
+            envVarKey: RENDER_EXTERNAL_URL
+            name: minio
+        - key: REDIS_HOST
+          fromService:
+            name: redis
+            type: pserv
+            property: host # available properties are listed below
+        - key: REDIS_PORT
+          fromService:
+            name: redis
+            type: pserv
+            property: port
+
+    - type: web
+      name: minio
+      healthCheckPath: /minio/health/live
+      env: docker
+      dockerfilePath: ./compose/prod/minio/Dockerfile
+      dockerContext: ./compose/prod/minio/
+      disk:
+        name: data
+        mountPath: /data
+        sizeGB: 10
+      envVars:
+        - key: MINIO_ROOT_USER
+          generateValue: true
+        - key: MINIO_ROOT_PASSWORD
+          generateValue: true
+        - key: PORT
+          value: 9000
+
+    - type: pserv
+      name: redis
+      dockerfilePath: ./compose/prod/redis/Dockerfile
+      dockerContext: ./compose/prod/redis
+      env: docker
+      disk:
+          name: data
+          mountPath: /var/lib/redis
+          sizeGB: 10
+
+
+databases:
+    - name: gratefulmorningfarm-db
+      previewPlan: starter
+      databaseName: gratefulmorningfarm # optional (Render may add a suffix)
+      ipAllowList: [] # optional (defaults to allow all)
+
+envVarGroups:
+    - name: sentry
+      envVars:
+        - key: SENTRY_DSN
+          sync: false
+        - key: SENTRY_PROJECT
+          value: gratefulmorningfarm
