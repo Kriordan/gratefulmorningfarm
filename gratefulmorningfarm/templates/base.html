@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -7,47 +7,52 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="{% static 'img/favicons/favicon.ico' %}" />
+        <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap"
+              rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+              rel="stylesheet"/>
         {% load django_vite %}
         {% vite_hmr_client %}
         {% vite_asset 'js/main.ts' %}
         {% load django_htmx %}
         {% django_htmx_script %}
         {% block extra_head %}
-            <title>Lightmatter</title>
+            <title>Grateful Morning Farm</title>
         {% endblock extra_head %}
     </head>
     <body hx-boost="true"
-          class="{% block body_class %}{% endblock body_class %}">
+          class="font-montserrat text-base leading-relaxed {% block body_class %}{% endblock body_class %}">
         {% include "header/base.html" %}
-        <div id="main">
+        <main id="main" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {% block content %}
             {% endblock content %}
             <ul class="messages" id="messages">
                 {% include "util/messages.html" %}
             </ul>
-        </div>
+        </main>
         {% include "footer.html" %}
     </body>
     <script>
-    if (getCookie === undefined) {
-      function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-          const cookies = document.cookie.split(';');
-          for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-            }
+  if (getCookie === undefined) {
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < script cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
           }
         }
-        return cookieValue;
       }
-      document.body.addEventListener('htmx:configRequest', (event) => {
-        event.detail.headers['X-CSRFToken'] = getCookie('{{cookiecutter.repo_name}}_csrftoken');
-      })
-    };
+      return cookieValue;
+    }
+    document.body.addEventListener('htmx:configRequest', (event) => {
+      event.detail.headers['X-CSRFToken'] = getCookie('{{cookiecutter.repo_name}}_csrftoken');
+    })
+  };
+
     </script>
 </html>

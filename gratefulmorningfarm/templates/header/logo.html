@@ -1,10 +1,12 @@
 <div class="flex-shrink-0 flex items-center">
     <a href="{% url "home" %}">
+        {% comment %} Mobile logomark {% endcomment %}
         <img class="block lg:hidden h-8 w-auto"
-             src="{% static 'img/logomark.svg' %}"
+             src="{% static 'img/logo_cow.png' %}"
              alt=""/>
+        {% comment %} Desktop logo {% endcomment %}
         <img class="hidden lg:block h-8 w-auto"
-             src="{% static 'img/logo.svg' %}"
+             src="{% static 'img/logo_cow.png' %}"
              alt=""/>
     </a>
 </div>
