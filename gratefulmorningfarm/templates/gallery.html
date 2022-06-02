@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-    <div x-data="{ open: false }" class="flex justify-center">
-        <p>
+    <div x-data="{ open: false }">
+        <p class="font-karla text-3xl my-5 text-center">
             Gallery
         </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-[960px]">
+            {% for image in images %}
+                {% with 'img/gallery/'|add:image as image_static %}
+                    <img class="object-cover" src="{% static image_static %}" alt="" />
+                {% endwith %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}
