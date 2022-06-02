@@ -7,4 +7,5 @@ urlpatterns = [
     path(r"current-time/", current_time, name="current_time"),
     path(r"error/", error, name="error"),
     path(r"", TemplateView.as_view(template_name="index.html"), name="home"),
+    path(r"gallery/", TemplateView.as_view(template_name="gallery.html"), name="gallery"),
 ]
