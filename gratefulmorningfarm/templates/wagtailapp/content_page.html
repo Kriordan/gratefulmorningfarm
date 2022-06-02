@@ -1,11 +1,8 @@
 {% load wagtailcore_tags %}
 {% extends 'base.jinja' %}
-
 {% block extra_head %}
-{% include 'util/social.html' %}
+    {% include 'util/social.html' %}
 {% endblock extra_head %}
-
 {% block content %}
-{% include_block page.body %}
+    {% include_block page.body %}
 {% endblock %}
-
