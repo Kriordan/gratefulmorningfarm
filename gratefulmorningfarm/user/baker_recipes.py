@@ -2,7 +2,7 @@ from model_bakery.recipe import Recipe, seq
 
 from .models import User
 
-email_seq = seq("test@lightmatter.com")
+email_seq = seq("test@gratefulmorningfarm.com")
 
 user = Recipe(
     User,

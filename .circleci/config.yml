@@ -53,17 +53,16 @@ jobs:
       - run: sentry-cli releases set-commits --auto $CIRCLE_SHA1
       - run: sentry-cli releases finalize $CIRCLE_SHA1
 
-
 workflows:
   version: 2.1
   deploy:
     jobs:
       - test-django:
-          context: lightmatter
+          context: kriordan
 
       # - sentry:
       #     name: sentry-prod
-      #     context: lightmatter
+      #     context: kriordan
       #     requires:
       #       - deploy-prod
       #     filters:
@@ -72,17 +71,14 @@ workflows:
 
       # - sentry:
       #     name: sentry-dev
-      #     context: lightmatter
+      #     context: kriordan
       #     requires:
       #       - deploy-dev
       #     filters:
       #       branches:
       #         only: develop
 
-
-
-
       # - ghostinspector:
-      #     context: lightmatter
+      #     context: kriordan
       #     requires:
       #       - deploy-dev

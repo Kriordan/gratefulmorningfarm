@@ -8,7 +8,7 @@ if [ -d .git ]; then
 else
     echo "Setting up Git"
     git init . -b main
-    git remote add origin "git@github.com:Lightmatter/gratefulmorningfarm.git"
+    git remote add origin "git@github.com:Kriordan/gratefulmorningfarm.git"
     #todo - add all and make initial push
 fi
 
