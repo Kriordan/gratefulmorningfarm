@@ -1,4 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Events</h2>
+    <h1 class="font-karla text-3xl my-5 text-center text-gray-900 font-bold">Events</h1>
+    <!-- Noscript content for added SEO -->
+    <noscript><a href="https://www.eventbrite.com/e/burger-night-tickets-356273592907"
+   rel="noopener noreferrer"
+   target="_blank">Buy Tickets on Eventbrite</a></noscript>
+    <!-- You can customize this button any way you like -->
+    <button id="eventbrite-widget-modal-trigger-356273592907" type="button">Buy Tickets</button>
 {% endblock content %}
+{% block extra_scripts %}
+    <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+    <script type="text/javascript">
+    var exampleCallback = function() {
+        console.log('Order complete!');
+    };
+
+    window.EBWidgets.createWidget({
+        widgetType: 'checkout',
+        eventId: '356273592907',
+        modal: true,
+        modalTriggerElementId: 'eventbrite-widget-modal-trigger-356273592907',
+        onOrderComplete: exampleCallback
+    });
+    </script>
+{% endblock extra_scripts %}

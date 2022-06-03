@@ -53,6 +53,7 @@
       event.detail.headers['X-CSRFToken'] = getCookie('{{cookiecutter.repo_name}}_csrftoken');
     })
   };
-
     </script>
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
 </html>
