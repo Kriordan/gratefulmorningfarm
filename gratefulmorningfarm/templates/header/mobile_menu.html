@@ -11,15 +11,15 @@
      style="display: none;">
     <div class="pt-2 pb-3 space-y-1">
         <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-        <a href="{% url home %}"
+        <a href="{% url 'home' %}"
            class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6">Home</a>
-        <a href="{% url about %}"
+        <a href="{% url 'about' %}"
            class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6">About</a>
-        <a href="{% url gallery %}"
+        <a href="{% url 'gallery' %}"
            class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6">Gallery</a>
-        <a href="{% url events %}"
+        <a href="{% url 'events' %}"
            class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6">Events</a>
-        <a href="{% url blog %}"
+        <a href="{% url 'blog' %}"
            class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6">Blog</a>
     </div>
     {% if request.user.is_authenticated %}
@@ -28,7 +28,7 @@
                 <div class="flex-shrink-0">
                     <img class="h-10 w-10 rounded-full"
                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                         alt="">
+                         alt=""/>
                 </div>
                 <div class="ml-3">
                     <div class="text-base font-medium text-gray-800">Tom Cook</div>
