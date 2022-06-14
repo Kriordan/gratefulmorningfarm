@@ -1,12 +1,6 @@
 <div class="flex-shrink-0 flex items-center">
-    <a href="{% url "home" %}">
-        {% comment %} Mobile logomark {% endcomment %}
-        <img class="block lg:hidden h-8 w-auto"
-             src="{% static 'img/logo_cow.png' %}"
-             alt=""/>
-        {% comment %} Desktop logo {% endcomment %}
-        <img class="hidden lg:block h-8 w-auto"
-             src="{% static 'img/logo_cow.png' %}"
-             alt=""/>
+    <a href="{% url "home" %}" class="flex">
+        <img class="block h-8 w-8" src="{% static 'img/logo_cow.png' %}" alt=""/>
+        <h1 class="font-karla text-2xl block ml-3">Grateful Morning Farm</h1>
     </a>
 </div>
