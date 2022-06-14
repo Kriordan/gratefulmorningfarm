@@ -5,10 +5,9 @@
                 <a href="{% url 'home' %}"
                    class="text-base text-gray-500 hover:text-gray-900">Home</a>
             </div>
-            <div class="px-5 py-2">
-                <a href="{% url 'about' %}"
-                   class="text-base text-gray-500 hover:text-gray-900">About</a>
-            </div>
+            {% comment %} <div class="px-5 py-2">
+                <a href="{% url 'about' %}" class="text-base text-gray-500 hover:text-gray-900">About</a>
+            </div> {% endcomment %}
             <div class="px-5 py-2">
                 <a href="{% url 'gallery' %}"
                    class="text-base text-gray-500 hover:text-gray-900">Gallery</a>
@@ -17,10 +16,9 @@
                 <a href="{% url 'events' %}"
                    class="text-base text-gray-500 hover:text-gray-900">Events</a>
             </div>
-            <div class="px-5 py-2">
-                <a href="{% url 'blog' %}"
-                   class="text-base text-gray-500 hover:text-gray-900">Blog</a>
-            </div>
+            {% comment %} <div class="px-5 py-2">
+                <a href="{% url 'blog' %}" class="text-base text-gray-500 hover:text-gray-900">Blog</a>
+            </div> {% endcomment %}
         </nav>
         <div class="mt-8 flex justify-center space-x-6">
             <a href="https://www.facebook.com/Grateful-Morning-Farm-102261528454166/"
